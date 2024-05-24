@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fit-ish</title>
+    <link rel="icon" type="image/x-icon" href="C:\Users\USER\Downloads\fit.png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: black;
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            text-align: center;
+            background-color:grey;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .factor {
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .factor img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .food-list, .exercise-list {
+            color: midnightblue;
+            display: none;
+            margin-top: 20px;
+        }
+
+        .food-list ul, .exercise-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .food-list li, .exercise-list li {
+            margin-bottom: 5px;
+        }
+
+        .contact {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fit-ish</h1>
+        <div class="factor">
+            <img src="C:\Users\USER\Downloads\carbs.jpeg" alt="Carbohydrates" onclick="showList('carbs')">
+            <div class="food-list" id="carbs">
+                <ul>
+                    <li>Brown Rice</li>
+                    <li>Quinoa</li>
+                    <li>Sweet Potatoes</li>
+                    <!-- Add more items as needed -->
+                </ul>
+            </div>
+        </div>
+        <div class="factor">
+            <img src="C:\Users\USER\Downloads\protien.jpeg" alt="Proteins" onclick="showList('proteins')">
+            <div class="food-list" id="proteins">
+                <ul>
+                    <li>Chicken Breast</li>
+                    <li>Salmon</li>
+                    <li>Greek Yogurt</li>
+                    <!-- Add more items as needed -->
+                </ul>
+            </div>
+        </div>
+        <div class="factor">
+            <img src="C:\Users\USER\Downloads\vitamins.jpeg" alt="Vitamins" onclick="showList('vitamins')">
+            <div class="food-list" id="vitamins">
+                <ul>
+                    <li>Spinach</li>
+                    <li>Kale</li>
+                    <li>Broccoli</li>
+                    <!-- Add more items as needed -->
+                </ul>
+            </div>
+        </div>
+        <div class="factor">
+            <img src="C:\Users\USER\Downloads\minerals.jpeg" alt="Minerals" onclick="showList('minerals')">
+            <div class="food-list" id="minerals">
+                <ul>
+                    <li>Almonds</li>
+                    <li>Walnuts</li>
+                    <li>Seeds (Flaxseeds, Chia Seeds, etc.)</li>
+                    <!-- Add more items as needed -->
+                </ul>
+            </div>
+        </div>
+        <div class="factor">
+            <img src="C:\Users\USER\Downloads\fiber.jpeg" alt="Fiber" onclick="showList('fiber')">
+            <div class="food-list" id="fiber">
+                <ul>
+                    <li>Whole Grains</li>
+                    <li>Beans</li>
+                    <li>Avocado</li>
+                    <!-- Add more items as needed -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- Exercise section -->
+        <div class="factor">
+            <h3>Exercise</h3>
+            <input type="number" id="caloriesInput" placeholder="Enter Calories Intake">
+            <button onclick="showExercises()">Get Exercise Recommendations</button>
+            <div class="exercise-list" id="exercises">
+                <ul>
+                    <!-- Exercises will be dynamically added here -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- Contact section -->
+        <div class="contact">
+            <p>For any queries, please email us at <a href="mailto:sreemanogna24@gmail.com">sreemanogna24@gmail.com</a> or call us at 9398282134.</p>
+        </div>
+    </div>
+
+    <script>
+        function showList(id) {
+            var list = document.getElementById(id);
+            if (list.style.display === "none") {
+                list.style.display = "block";
+            } else {
+                list.style.display = "none";
+            }
+        }
+
+        function showExercises() {
+            var caloriesInput = document.getElementById("caloriesInput").value;
+            var exerciseList = document.getElementById("exercises");
+            exerciseList.innerHTML = ""; // Clear previous list
+
+            // Perform some calculations and suggest exercises
+            var suggestedExercises = [];
+
+            if (caloriesInput >= 500) {
+                suggestedExercises.push("Running");
+                suggestedExercises.push("Cycling");
+                suggestedExercises.push("Swimming");
+            } else if (caloriesInput >= 300) {
+                suggestedExercises.push("Brisk Walking");
+                suggestedExercises.push("Yoga");
+                suggestedExercises.push("Pilates");
+            } else {
+                suggestedExercises.push("Stretching");
+                suggestedExercises.push("Light Aerobics");
+            }
+
+            // Display suggested exercises
+            suggestedExercises.forEach(function(exercise) {
+                var listItem = document.createElement("li");
+                listItem.textContent = exercise;
+                exerciseList.appendChild(listItem);
+            });
+
+            exerciseList.style.display = "block";
+        }
+    </script>
+</body>
+</html>
